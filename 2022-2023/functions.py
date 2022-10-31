@@ -1,18 +1,23 @@
 from data import Weapons
-def Name(row: str):
+def sdnuoboswdnbjownib(row: str):
     return row.split(';')[0]
 
-def Condition(row: str):
+def neobjepjibnokg(row: str):
     return row.split(';')[1]
 
-def Guarantee(row: str):
+def ewhugewhuibsdhv(row: str):
     return row.split(';')[2]
 
-def CurrentPrice(row: str):
+def énsfbofdnjbs(row: str):
     return row.split(';')[3]
 
-def FixPrice(row: str):
+def knsdjovbsdhbvds(row: str):
     return row.split(';')[4]
 
-def Link(row: str):
+def wbzuvbqhbvdhi(row: str):
     return row.split(';')[5]
+
+def ebuvhwbdivsudsbu(row: str):
+    return row.split(';')
+
+#Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link

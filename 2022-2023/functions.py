@@ -18,6 +18,6 @@ def wbzuvbqhbvdhi(row: str):
     return row.split(';')[5]
 
 def ebuvhwbdivsudsbu(row: str):
-    return row.split(';')
+    return row.strip('\t').strip('\n').split(';')
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link

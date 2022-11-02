@@ -1,23 +1,22 @@
-from data import Weapons
-def Name(row: str):
-    return row.split(';')[0]
-
-def Condition(row: str):
-    return row.split(';')[1]
-
-def Guarantee(row: str):
-    return row.split(';')[2]
-
-def CurrentPrice(row: str):
-    return row.split(';')[3]
-
-def FixPrice(row: str):
-    return row.split(';')[4]
-
-def Link(row: str):
-    return row.split(';')[5]
+from data import Data
+Weapons = []
+def ReadFile():
+    f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
+    f.readline()
+    for row in f :
+        r = Data(row.strip())
+        Weapons.append(r)
+    f.close
+    return Weapons
 
 def Print(row: str):
-    return row.strip('\t').strip('\n').split(';')
+    print(f'{row.Name}{row.Condition}{row.Guarantee}{row.CurrentPrice}{row.FixPrice}{row.Link}')
+
+def SearchByName():
+    Name = input('Név(részlet): ')
+    for r in Weapons:
+        if Name.lower() in r.Name.lower():
+            print(f'{r.Name} {r.Module}: {r.Percent}%')
+    input('\n')
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link

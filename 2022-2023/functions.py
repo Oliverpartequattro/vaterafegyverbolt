@@ -8,18 +8,11 @@ def ReadFile():
         r = Data(row.strip())
         Weapons.append(r)
     f.close
-    return Weapons
+    return Weapons 
 
 def Print(row: str):
     print(f'{row.Name} {row.Condition} {row.Guarantee} {row.CurrentPrice} {row.FixPrice} {row.Link}')
 
-def SearchByName():
-    Name = input('Név(részlet): ')
-    for r in Weapons:
-        if Name.lower() in r.Name.lower():
-            print(f'{r.Name} {r.Module}: {r.Percent}%')
-    input('\n')
-    
 def ViewList():
     os.system('cls')
     print('1.Fegyverek neve')
@@ -81,7 +74,7 @@ def writeFile():
         f.write(row)
     f.close()
 
-def deleteResult():
+def DeleteWeapon():
     name = input('Név: ')
     for r in Weapons:
         if r.name.lower() == name.lower():

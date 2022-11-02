@@ -6,12 +6,12 @@ ReadFile()
 choice = menu()
 while choice != 0:
     if choice == 1:
-        newResult()
+        ViewList()
     if choice == 2:
-        modifyResult()
+        NewWeapon()
     if choice == 3:
-        deleteResult()
+        licit()
     if choice == 4:
-        searchByName()
+        DeleteWeapon()
     choice = menu()
     

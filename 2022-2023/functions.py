@@ -1,4 +1,5 @@
 from data import Data
+import os
 Weapons = []
 def ReadFile():
     f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
@@ -18,6 +19,42 @@ def SearchByName():
         if Name.lower() in r.Name.lower():
             print(f'{r.Name} {r.Module}: {r.Percent}%')
     input('\n')
+    
+def ViewList():
+    os.system('cls')
+    print('1.Fegyverek neve')
+    print('2.Fegyverek állapottya')
+    print('3.Fegyverek garacijája')
+    print('4.Fegyverek jelenlegi ára')
+    print('5.Fegyverek fi ára')
+    print('6.Fegyverek linkje')
+    print('7.Fegyverre licitálás')
+    Choice = int(input("Kérjük válasszá: "))
+    Count = 0
+    if Choice == 1:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.Name}')
+    elif Choice == 2:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.Condition}')
+    elif Choice == 3:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.Guarantee}')
+    elif Choice == 4:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.CurrentPrice}')
+    elif Choice == 5:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.FixPrice}')
+    elif Choice == 6:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.Link}')
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
 
@@ -38,7 +75,7 @@ def NewWeapon():
     Weapons.append(r)
 
 def writeFile():
-    f = open('ecdl.csv', 'w', encoding='UTF-8')
+    f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
     for r in Weapons:
         row = f'{r.name};{r.condition};{r.guarantee};{r.currentprice};{r.fixprice};{r.link}\n'
         f.write(row)

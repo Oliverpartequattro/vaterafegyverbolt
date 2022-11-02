@@ -7,26 +7,26 @@ def Menu():
     print('4.Fegyverek jelenlegi ára')
     print('5.Fegyverek fi ára')
     print('6.Fegyverek linkje')
-    sdhgkjsdbsjk = int(input("Kérjük válasszá: "))
-    if sdhgkjsdbsjk == 1:
+    choice = int(input("Kérjük válasszá: "))
+    if choice == 1:
         for i in range(len(Weapons)):
             print(f'{i}.{Name(Weapons[i])}')
-    elif sdhgkjsdbsjk == 2:
+    elif choice == 2:
         for i in range(len(Weapons)):
             print(f'{i}.{Condition(Weapons[i])}')
-    elif sdhgkjsdbsjk == 3:
+    elif choice == 3:
         for i in range(len(Weapons)):
             print(f'{i}.{Guarantee(Weapons[i])}')
-    elif sdhgkjsdbsjk == 4:
+    elif choice == 4:
         for i in range(len(Weapons)):
             print(f'{i}.{CurrentPrice(Weapons[i])}')
-    elif sdhgkjsdbsjk == 5:
+    elif choice == 5:
         for i in range(len(Weapons)):
             print(f'{i}.{FixPrice(Weapons[i])}')
-    elif sdhgkjsdbsjk == 6:
+    elif choice == 6:
         for i in range(len(Weapons)):
             print(f'{i}.{Link(Weapons[i])}')
-    zwidbvdsbvdbv = int(input("Kérjük válasszá: "))
-    print(f'{Print(Weapons[zwidbvdsbvdbv])}\n')
+    choice2 = int(input("Kérjük válasszá: "))
+    print(f'{Print(Weapons[choice2])}\n')
 
 Menu()

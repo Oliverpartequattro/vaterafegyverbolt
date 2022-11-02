@@ -4,10 +4,10 @@ from functions import *
 
 def menu():
     os.system('cls')
-    print('1..Új eredmény rögzítése')
-    print('2..Eredmény módosítása')
-    print('3..Eredmény törlése')
-    print('4..Eredmény keresése (név alapján)')
+    print('1..Fegyver keresése (bármilyen adat alapján)')
+    print('2..Új fegyver rögzítése')
+    print('3..Fegyverre licitálás')
+    print('4..Fegyver törlése')
     print('')
     print('0..Kilépés a programból')
 

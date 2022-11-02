@@ -1,5 +1,5 @@
 Weapons = []
-dsfhbshjdvhjshf = open('Vatera fegyverbolt.csv', 'r', encoding='UTF-8')
-for row in dsfhbshjdvhjshf:
+f = open('Vatera fegyverbolt.csv', 'r', encoding='UTF-8')
+for row in f:
     Weapons.append(row)
-dsfhbshjdvhjshf.close()
+f.close()

@@ -1,5 +1,5 @@
 from data import Weapons
-from functions import sdnuoboswdnbjownib, neobjepjibnokg, ewhugewhuibsdhv, énsfbofdnjbs, knsdjovbsdhbvds, wbzuvbqhbvdhi, ebuvhwbdivsudsbu
+from functions import Name, Condition, Guarantee, CurrentPrice, FixPrice, Link, Print
 def Menu():
     print('1.Fegyverek neve')
     print('2.Fegyverek állapottya')
@@ -10,23 +10,23 @@ def Menu():
     sdhgkjsdbsjk = int(input("Kérjük válasszá: "))
     if sdhgkjsdbsjk == 1:
         for i in range(len(Weapons)):
-            print(f'{i}.{sdnuoboswdnbjownib(Weapons[i])}')
+            print(f'{i}.{Name(Weapons[i])}')
     elif sdhgkjsdbsjk == 2:
         for i in range(len(Weapons)):
-            print(f'{i}.{neobjepjibnokg(Weapons[i])}')
+            print(f'{i}.{Condition(Weapons[i])}')
     elif sdhgkjsdbsjk == 3:
         for i in range(len(Weapons)):
-            print(f'{i}.{ewhugewhuibsdhv(Weapons[i])}')
+            print(f'{i}.{Guarantee(Weapons[i])}')
     elif sdhgkjsdbsjk == 4:
         for i in range(len(Weapons)):
-            print(f'{i}.{énsfbofdnjbs(Weapons[i])}')
+            print(f'{i}.{CurrentPrice(Weapons[i])}')
     elif sdhgkjsdbsjk == 5:
         for i in range(len(Weapons)):
-            print(f'{i}.{knsdjovbsdhbvds(Weapons[i])}')
+            print(f'{i}.{FixPrice(Weapons[i])}')
     elif sdhgkjsdbsjk == 6:
         for i in range(len(Weapons)):
-            print(f'{i}.{wbzuvbqhbvdhi(Weapons[i])}')
+            print(f'{i}.{Link(Weapons[i])}')
     zwidbvdsbvdbv = int(input("Kérjük válasszá: "))
-    print(f'{ebuvhwbdivsudsbu(Weapons[zwidbvdsbvdbv])}\n')
+    print(f'{Print(Weapons[zwidbvdsbvdbv])}\n')
 
 Menu()

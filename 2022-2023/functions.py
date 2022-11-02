@@ -3,7 +3,6 @@ import os
 Weapons = []
 def ReadFile():
     f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
-    f.readline()
     for row in f :
         r = Data(row.strip())
         Weapons.append(r)
@@ -11,18 +10,17 @@ def ReadFile():
     return Weapons 
 
 def Print(row: str):
-    print(f'{row.Name} {row.Condition} {row.Guarantee} {row.CurrentPrice} {row.FixPrice} {row.Link}')
+    print(f'Név:{row.Name} Állapot:{row.Condition} Garancia:{row.Guarantee} Jelenlegi Ár:{row.CurrentPrice} Vételár:{row.FixPrice} Link:{row.Link}')
 
 def ViewList():
     os.system('cls')
-    print('1.Fegyverek neve')
-    print('2.Fegyverek állapottya')
-    print('3.Fegyverek garacijája')
-    print('4.Fegyverek jelenlegi ára')
-    print('5.Fegyverek fi ára')
-    print('6.Fegyverek linkje')
-    print('7.Fegyverre licitálás')
-    Choice = int(input("Kérjük válasszá: "))
+    print('1.Listázás név alapján')
+    print('2.Listázás állapot alapján')
+    print('3.Listázás garancia alapján')
+    print('4.Listázás jelenlegi ár alapján')
+    print('5.Listázás vételár alapján')
+    print('6.Listázás link alapján')
+    Choice = int(input("Kérjük válasszon szempontot: "))
     Count = 0
     if Choice == 1:
         for row in Weapons:
@@ -48,6 +46,9 @@ def ViewList():
         for row in Weapons:
             Count += 1
             print(f'{Count}.{row.Link}')
+    Choice2 = int(input("Részletesebb információért írja be a fegyver sorszámát: "))
+    print(f'{Print(Weapons[Choice2])}\n')
+    input('')
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
 

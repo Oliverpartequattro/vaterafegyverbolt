@@ -1,15 +1,17 @@
-from menu import Menu
-from data import Data
-from functions import Weapons, ReadFile, Print, SearchByName
+from menu import *
+from data import *
+from functions import *
 ReadFile()
-Choice = Menu()
-while Choice != 0:
-    if Choice == '1':
-        SearchByName()
-    if Choice == '2':
-        pass
-    if Choice == '3':
-        pass
-    if Choice == '4':
-        pass
-    Choice = Menu()
+
+choice = menu()
+while choice != 0:
+    if choice == 1:
+        newResult()
+    if choice == 2:
+        modifyResult()
+    if choice == 3:
+        deleteResult()
+    if choice == 4:
+        searchByName()
+    choice = menu()
+    

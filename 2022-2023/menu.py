@@ -8,12 +8,13 @@ def menu():
     print('2..Új fegyver rögzítése')
     print('3..Fegyverre licitálás')
     print('4..Fegyver törlése')
+    print('5..Fegyver adatainak módosítása')
     print('')
     print('0..Kilépés a programból')
 
-    choice = input('\nVálasztás (0..4): ')
-    while len(choice) != 1 or choice < '0' or choice > '4':
-        choice = input('\nVálasztás (0..4): ')
+    choice = input('\nVálasztás (0..5): ')
+    while len(choice) != 1 or choice < '0' or choice > '5':
+        choice = input('\nVálasztás (0..5): ')
 
     os.system('cls')
     return int(choice)

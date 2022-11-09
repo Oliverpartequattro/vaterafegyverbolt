@@ -1,5 +1,6 @@
 from data import Data
 import os
+import locale
 Weapons = []
 def ReadFile():
     f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
@@ -94,18 +95,35 @@ def DeleteWeapon():
             Weapons.remove(r)
             writeFile()
             return
-    input('Ilyen fegyver nics')
+    input('Ilyen fegyver nincs')
     
 def licit():
     name = input('Amire licitálni szeretnél: ')
     for r in Weapons:
-        if r.name.lower() == name.lower():
-            NewLicit =  input('Mennyivel licitálsz?')
-            if NewLicit > r.currentprice:
-                r.currentprice = NewLicit
+        if r.Name.lower() == name.lower():
+            NewLicit =  input('Mennyivel licitálsz?: ')
+            if NewLicit > r.CurrentPrice:
+                NewLicit = int(NewLicit)
+                locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+                r.CurrentPrice = (f'{NewLicit:n}ft')
             else:
                 print('192.176.45.34')
             writeFile()
             return
     input('Ilyen nevű fegyver nincs')
-    
+
+def ModifyWeapon():
+    name = input('Név: ')
+    for r in Weapons:
+        if r.Name.lower() == name.lower() and r.Modify.lower() == 'igen':
+            r.Name = input('Új név: ')
+            r.Condition = input('Új állapot: ')
+            r.Guarantee = input ('Új garancia: ')
+            r.CurrentPrice = input('Új licitár: ')
+            r.FixPrice = input('Új vételár: ')
+            r.Place = input('Új Áru helye: ')
+            r.Link = input('Új link: ')
+            r.Modify = 'igen'
+            writeFile()
+            return
+    input('Ilyen nevű fegyver nincs')

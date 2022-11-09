@@ -13,5 +13,7 @@ while choice != 0:
         licit()
     if choice == 4:
         DeleteWeapon()
+    if choice == 5:
+        ModifyWeapon()
     choice = menu()
     

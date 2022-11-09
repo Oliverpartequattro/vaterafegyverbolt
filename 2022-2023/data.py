@@ -1,6 +1,6 @@
 class Data:
     def __init__(self, row: str):
-        data = row.split(';')
+        data = row.strip().split(';')
         self.Name = data[0]
         self.Condition = data[1]
         self.Guarantee = data[2]

@@ -6,7 +6,7 @@ def ReadFile():
     for row in f :
         r = Data(row.strip())
         Weapons.append(r)
-    f.close
+    f.close()
     return Weapons 
 
 def Print(row: str):
@@ -83,8 +83,8 @@ def NewWeapon():
 def writeFile():
     f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
     for r in Weapons:
-        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}\n'
-        f.write(row)
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
+        f.write(f'{row}\n')
     f.close()
 
 def DeleteWeapon():
@@ -104,7 +104,7 @@ def licit():
             if NewLicit > r.currentprice:
                 r.currentprice = NewLicit
             else:
-                print('192.176.45,34')
+                print('192.176.45.34')
             writeFile()
             return
     input('Ilyen nevű fegyver nincs')

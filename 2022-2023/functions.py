@@ -10,7 +10,7 @@ def ReadFile():
     return Weapons 
 
 def Print(row: str):
-    print(f'Név:{row.Name} Állapot:{row.Condition} Garancia:{row.Guarantee} Jelenlegi Ár:{row.CurrentPrice} Vételár:{row.FixPrice} Link:{row.Link}')
+    return (f'Név:{row.Name}\nÁllapot:{row.Condition}\nGarancia:{row.Guarantee}\nJelenlegi Ár:{row.CurrentPrice}\nVételár:{row.FixPrice}\nÁru helye:{row.Place}\nLink:{row.Link}\nMódosítható-e:{row.Modify}')
 
 def ViewList():
     os.system('cls')
@@ -19,7 +19,9 @@ def ViewList():
     print('3.Listázás garancia alapján')
     print('4.Listázás jelenlegi ár alapján')
     print('5.Listázás vételár alapján')
-    print('6.Listázás link alapján')
+    print('6.Listázás az áru helye alapján')
+    print('7.Listázás link alapján')
+    print('8.Listázás módosíthatóság alapján')
     Choice = int(input("Kérjük válasszon szempontot: "))
     Count = 0
     if Choice == 1:
@@ -45,9 +47,17 @@ def ViewList():
     elif Choice == 6:
         for row in Weapons:
             Count += 1
+            print(f'{Count}.{row.Place}')
+    elif Choice == 7:
+        for row in Weapons:
+            Count += 1
             print(f'{Count}.{row.Link}')
+    elif Choice == 8:
+        for row in Weapons:
+            Count += 1
+            print(f'{Count}.{row.Modify}')
     Choice2 = int(input("Részletesebb információért írja be a fegyver sorszámát: "))
-    print(f'{Print(Weapons[Choice2])}\n')
+    print(f'{Print(Weapons[Choice2-1])}\n')
     input('')
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
@@ -58,9 +68,11 @@ def NewWeapon():
     guarantee = input('Grancia: ')
     currentprice = input('Legnagyobb licit: ')
     fixprice = input('Vételár:')
+    place = input('Áru helye: ')
     link = input('Link: ')
+    modify = 'igen'
 
-    row = f'{name};{condition};{guarantee};{currentprice};{fixprice};{link}\n'
+    row = f'{name};{condition};{guarantee};{currentprice};{fixprice};{place};{link};{modify}\n'
     f = open('Vatera_fegyverbolt.csv', 'a', encoding='UTF-8')
     f.write(row)
     f.close()
@@ -71,14 +83,14 @@ def NewWeapon():
 def writeFile():
     f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
     for r in Weapons:
-        row = f'{r.name};{r.condition};{r.guarantee};{r.currentprice};{r.fixprice};{r.link}\n'
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}\n'
         f.write(row)
     f.close()
 
 def DeleteWeapon():
     name = input('Név: ')
     for r in Weapons:
-        if r.name.lower() == name.lower():
+        if r.Name.lower() == name.lower() and r.Modify.lower() == 'igen':
             Weapons.remove(r)
             writeFile()
             return
@@ -95,5 +107,5 @@ def licit():
                 print('192.176.45,34')
             writeFile()
             return
-    input('Ilyen nevű vizsgázó nem volt')
+    input('Ilyen nevű fegyver nincs')
     

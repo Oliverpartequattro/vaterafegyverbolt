@@ -6,4 +6,6 @@ class Data:
         self.Guarantee = data[2]
         self.CurrentPrice = data[3]
         self.FixPrice = data[4]
-        self.Link = data[5]
+        self.Place = data[5]
+        self.Link = data[6]
+        self.Modify = data[7]

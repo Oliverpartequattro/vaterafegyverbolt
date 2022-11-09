@@ -67,8 +67,6 @@ def ViewList():
         ShoppingCart.append(Weapons[Choice2 - 1])
     else:
         input('Vissza a főmenübe...')
-        
-        
     
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
@@ -146,9 +144,13 @@ def ViewShoppingCart():
     Count = 0
     Sum = 0
     for row in ShoppingCart:
-            Count += 1
-            print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
-            Sum = Sum + row.CurrentPrice
-    Print(f'Összérték: {Sum} Ft')
+        if row.FixPrice != "Csak Licit":
+            int(row.FixPrice)
+        else:
+            row.FixPrice = 0
+        Count += 1
+        print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
+        Sum += int(row.FixPrice)
+    print(f'Összérték: {Sum} Ft')
     input('')
     

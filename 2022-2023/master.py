@@ -15,5 +15,7 @@ while choice != 0:
         DeleteWeapon()
     if choice == 5:
         ModifyWeapon()
+    if choice == 6:
+        ViewShoppingCart()
     choice = menu()
     

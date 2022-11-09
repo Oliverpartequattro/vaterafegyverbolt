@@ -8,6 +8,11 @@ Python kódunk a Vatera, egy ismert licitálós online felület alapján készü
 - Fegyverre való licitálás
 - Kosárhoz adás funkció
 
+A programhoz felhasználtuk:
+- Classok
+- WriteFile függvény
+- ReadFile függvény
+- Órai ismereteinket
 _____________________
 >Büszke készítői:
 >- Pintér Bálint

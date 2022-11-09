@@ -12,7 +12,7 @@ def ReadFile():
     return Weapons 
 
 def Print(row: str):
-    return (f'Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice}\nVételár: {row.FixPrice}\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}')
+    return (f'Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}')
 
 def ViewList():
     os.system('cls')
@@ -41,11 +41,11 @@ def ViewList():
     elif Choice == 4:
         for row in Weapons:
             Count += 1
-            print(f'\n{Count}.{row.CurrentPrice}\n')
+            print(f'\n{Count}.{row.CurrentPrice}\n Ft')
     elif Choice == 5:
         for row in Weapons:
             Count += 1
-            print(f'\n{Count}.{row.FixPrice}\n')
+            print(f'\n{Count}.{row.FixPrice}\n Ft')
     elif Choice == 6:
         for row in Weapons:
             Count += 1
@@ -77,8 +77,8 @@ def NewWeapon():
     name = input('Név: ')
     condition = input('Állapot: ')
     guarantee = input('Grancia: ')
-    currentprice = input('Legnagyobb licit: ')
-    fixprice = input('Vételár:')
+    currentprice = input('Legnagyobb licit (Ft): ')
+    fixprice = input('Vételár (Ft):')
     place = input('Áru helye: ')
     link = input('Link: ')
     modify = 'Igen'
@@ -117,7 +117,7 @@ def licit():
             if NewLicit > r.CurrentPrice:
                 NewLicit = int(NewLicit)
                 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-                r.CurrentPrice = (f'{NewLicit:n}ft')
+                r.CurrentPrice = (f'{NewLicit:n} Ft')
             else:
                 print('192.176.45.34')
             writeFile()
@@ -132,8 +132,8 @@ def ModifyWeapon():
             r.Name = input('Új név: ')
             r.Condition = input('Új állapot: ')
             r.Guarantee = input ('Új garancia: ')
-            r.CurrentPrice = input('Új licitár: ')
-            r.FixPrice = input('Új vételár: ')
+            r.CurrentPrice = input('Új licitár (Ft): ')
+            r.FixPrice = input('Új vételár (Ft): ')
             r.Place = input('Új Áru helye: ')
             r.Link = input('Új link: ')
             r.Modify = 'igen'
@@ -144,8 +144,11 @@ def ModifyWeapon():
 def ViewShoppingCart():
     #ViewList()
     Count = 0
+    Sum = 0
     for row in ShoppingCart:
             Count += 1
-            print(f'\n{Count}.{row}\n')
+            print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
+            Sum = Sum + row.CurrentPrice
+    Print(f'Összérték: {Sum} Ft')
     input('')
     

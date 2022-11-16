@@ -14,7 +14,7 @@ def ReadFile():
 def Print(row: str):
     return (f'Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}')
 
-def ViewList():
+def ViewList(ViewCart = False):
     os.system('cls')
     print('1.Listázás név alapján')
     print('2.Listázás állapot alapján')
@@ -62,12 +62,13 @@ def ViewList():
         print('192.176.45.34\n')
     Choice2 = int(input("Részletesebb információért írja be a fegyver sorszámát: "))
     print(f'\n{Print(Weapons[Choice2-1])}\n')
-    Choice3 = int(input('1 - Kosárba helyezés\n'))
-    if Choice3 == 1:
-        ShoppingCart.append(Weapons[Choice2 - 1])
-    else:
-        input('Vissza a főmenübe...')
-    
+    if ViewCart == True:
+        Choice3 = int(input('1 - Kosárba helyezés\n'))
+        if Choice3 == 1:
+            ShoppingCart.append(Weapons[Choice2 - 1])
+        else:
+            input('Vissza a főmenübe...')
+        
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
 

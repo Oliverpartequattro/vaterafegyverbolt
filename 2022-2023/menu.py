@@ -11,7 +11,7 @@ def menu():
     print('5..Fegyver adatainak módosítása')
     print('6...Kosár megtekintése')
     print('')
-    print('0..Kilépés a programból')
+    print('0..Kijelentkezés')
 
     choice = input('\nVálasztás (0..6): ')
     while len(choice) != 1 or choice < '0' or choice > '6':

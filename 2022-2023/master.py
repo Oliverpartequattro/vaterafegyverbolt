@@ -5,7 +5,9 @@ def Master():
     ReadFile()
 
     choice = menu()
-    while choice != 0:
+    while True:
+        if choice == 0:
+            os. system("python login.py")
         if choice == 1:
             ViewList(True)
         if choice == 2:

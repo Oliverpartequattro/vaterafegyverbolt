@@ -138,7 +138,7 @@ def ModifyWeapon():
             writeFile()
             return
     input('Ilyen nevű fegyver nincs')
-    
+
 def ViewShoppingCart():
     Count = 0
     Sum = 0

@@ -140,7 +140,6 @@ def ModifyWeapon():
     input('Ilyen nevű fegyver nincs')
     
 def ViewShoppingCart():
-    #ViewList()
     Count = 0
     Sum = 0
     for row in ShoppingCart:
@@ -151,6 +150,9 @@ def ViewShoppingCart():
         Count += 1
         print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
         Sum += int(row.FixPrice)
-    print(f'Összérték: {Sum} Ft')
+        if row.FixPrice == 0:
+            print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
+        else:
+            print(f'Összérték: {Sum} Ft')
     input('')
     

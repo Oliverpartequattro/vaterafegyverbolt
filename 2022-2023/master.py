@@ -6,7 +6,7 @@ ReadFile()
 choice = menu()
 while choice != 0:
     if choice == 1:
-        ViewList()
+        ViewList(True)
     if choice == 2:
         NewWeapon()
     if choice == 3:

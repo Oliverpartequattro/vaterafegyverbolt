@@ -33,17 +33,20 @@ def login():
         input()
          
 while True:
-    print("********** Bejelentkezés **********")
+    print("\n********** Bejelentkezés **********")
     print('1..Új fiók létrehozása')
     print('2..Bejelentkezés')
     print('3..Kilépés a programból')
-    choice = int(input('Választás: '))
-    if choice == 1:
-        signup()
-    elif choice == 2:
-        login()
-    elif choice == 3:
-        break
+    choice = input('Választás: ')
+    if type(choice) is int:
+        if choice == 1:
+            signup()
+        elif choice == 2:
+            login()
+        elif choice == 3:
+            break
+        else:
+            print('192.176.45.34')
     else:
         print('192.176.45.34')
 

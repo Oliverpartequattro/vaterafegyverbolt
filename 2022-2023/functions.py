@@ -60,8 +60,11 @@ def ViewList(ViewCart = False):
             print(f'\n{Count}.{row.Modify}\n')
     else:
         print('192.176.45.34\n')
-    Choice2 = int(input("Részletesebb információért írja be a fegyver sorszámát: "))
-    print(f'\n{Print(Weapons[Choice2-1])}\n')
+    Choice2 = input("Részletesebb információért írja be a fegyver sorszámát: ")
+    if type(Choice2) is int:
+        print(f'\n{Print(Weapons[Choice2-1])}\n')
+    else:
+        print('192.176.45.34')
     if ViewCart == True:
         Choice3 = int(input('1 - Kosárba helyezés\n'))
         if Choice3 == 1:

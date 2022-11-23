@@ -38,15 +38,15 @@ while True:
     print('2..Bejelentkezés')
     print('3..Kilépés a programból')
     choice = input('Választás: ')
-    if type(choice) is int:
-        if choice == 1:
-            signup()
-        elif choice == 2:
-            login()
-        elif choice == 3:
-            break
-        else:
-            print('192.176.45.34')
-    else:
+    try:
+        choice = int(choice)
+    except ValueError:
+        os. system("python login.py")
         print('192.176.45.34')
-
+    choice = int(choice)
+    if choice == 1:
+        signup()
+    elif choice == 2:
+        login()
+    elif choice == 3:
+        break

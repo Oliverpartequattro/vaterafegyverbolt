@@ -2,7 +2,7 @@ import hashlib
 from master import *
 
 def signup():
-    username = input('Írja be a felhasználónevét: ')
+    username = input('\nÍrja be a felhasználónevét: ')
     password = input('Írjon be egy jelszót: ')
     ConfirmPassword = input('Erősítse meg jelszavát: ')
     if ConfirmPassword == password:
@@ -13,12 +13,14 @@ def signup():
             f.write(hash1)
         f.close()
         print('Sikeres regisztráció!\n')
+        input('')
+        os.system('cls')
     else:
         print('A két jelszó nem egyezik meg.\n')
         input()
 
 def login():
-    username = input('Felhasználónév: ')
+    username = input('\nFelhasználónév: ')
     password = input('Jelszó: ')
     authorization = password.encode()
     AuthorizationHash = hashlib.md5(authorization).hexdigest()
@@ -36,7 +38,7 @@ while True:
     print("\n********** Bejelentkezés **********")
     print('1..Új fiók létrehozása')
     print('2..Bejelentkezés')
-    print('3..Kilépés a programból')
+    print('3..Kilépés a programból\n')
     choice = input('Választás: ')
     try:
         choice = int(choice)

@@ -16,6 +16,7 @@ def Print(row: str):
 
 def ViewList(ViewCart = False):
     os.system('cls')
+    print("\n********** Fegyverek keresése **********")
     print('1.Listázás név alapján')
     print('2.Listázás állapot alapján')
     print('3.Listázás garancia alapján')
@@ -30,7 +31,6 @@ def ViewList(ViewCart = False):
     except ValueError:
         ViewList()
         print('192.176.45.34')
-    Choice = int(Choice)
     Count = 0
     if Choice == 1:
         for row in Weapons:
@@ -64,27 +64,30 @@ def ViewList(ViewCart = False):
         for row in Weapons:
             Count += 1
             print(f'\n{Count}.{row.Modify}\n')
+    else:
+        print('192.176.45.34')
+        return ViewList(True)
     Choice2 = input("Részletesebb információért írja be a fegyver sorszámát: ")
     try:
         Choice2 = int(Choice2)
     except ValueError:
-        ViewList()
         print('192.176.45.34')
-    Choice2 = int(Choice2)
+        return ViewList(True)
     print(f'\n{Print(Weapons[Choice2-1])}\n')
     if ViewCart == True:
-        Choice3 = input('1 - Kosárba helyezés\n')
+        print('1 - Kosárba helyezés')
+        print('0 - Visszalépés a főmenübe\n')
+        Choice3 = input('Kérem válasszon:')
         try:
             Choice3 = int(Choice3)
         except ValueError:
-            ViewList()
-            print('192.176.45.34')
-        Choice3 = int(Choice3)
+            pass
         if Choice3 == 1:
             ShoppingCart.append(Weapons[Choice3 - 1])
         else:
             input('Vissza a főmenübe...')
-        
+    else:
+        return False
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
 
@@ -167,9 +170,9 @@ def ViewShoppingCart():
         Count += 1
         print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
         Sum += int(row.FixPrice)
-        if row.FixPrice == 0:
-            print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
-        else:
-            print(f'Összérték: {Sum} Ft')
+    if row.FixPrice == 0:
+        print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
+    else:
+        print(f'Összérték: {Sum} Ft')
     input('')
     

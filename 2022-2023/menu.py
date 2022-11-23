@@ -4,6 +4,7 @@ from functions import *
 
 def menu():
     os.system('cls')
+    print("\n********** Menü **********")
     print('1..Fegyver keresése (bármilyen adat alapján)')
     print('2..Új fegyver rögzítése')
     print('3..Fegyverre licitálás')

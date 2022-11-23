@@ -24,7 +24,13 @@ def ViewList(ViewCart = False):
     print('6.Listázás az áru helye alapján')
     print('7.Listázás link alapján')
     print('8.Listázás módosíthatóság alapján')
-    Choice = int(input("Kérjük válasszon szempontot: "))
+    Choice = input("Kérjük válasszon szempontot: ")
+    try:
+        Choice = int(Choice)
+    except ValueError:
+        ViewList()
+        print('192.176.45.34')
+    Choice = int(Choice)
     Count = 0
     if Choice == 1:
         for row in Weapons:
@@ -58,17 +64,24 @@ def ViewList(ViewCart = False):
         for row in Weapons:
             Count += 1
             print(f'\n{Count}.{row.Modify}\n')
-    else:
-        print('192.176.45.34\n')
     Choice2 = input("Részletesebb információért írja be a fegyver sorszámát: ")
-    if type(Choice2) is int:
-        print(f'\n{Print(Weapons[Choice2-1])}\n')
-    else:
+    try:
+        Choice2 = int(Choice2)
+    except ValueError:
+        ViewList()
         print('192.176.45.34')
+    Choice2 = int(Choice2)
+    print(f'\n{Print(Weapons[Choice2-1])}\n')
     if ViewCart == True:
-        Choice3 = int(input('1 - Kosárba helyezés\n'))
+        Choice3 = input('1 - Kosárba helyezés\n')
+        try:
+            Choice3 = int(Choice3)
+        except ValueError:
+            ViewList()
+            print('192.176.45.34')
+        Choice3 = int(Choice3)
         if Choice3 == 1:
-            ShoppingCart.append(Weapons[Choice2 - 1])
+            ShoppingCart.append(Weapons[Choice3 - 1])
         else:
             input('Vissza a főmenübe...')
         

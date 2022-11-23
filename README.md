@@ -1,6 +1,6 @@
 # VateraFegyverBolt
 Python kódunk a Vatera, egy ismert licitálós online felület alapján készült, ahol a kedves felhasználó az alábbi funkciókat használhatja:
-- Fegyverek adatok alapjáni részletes listázása
+- Fegyverek részletes listázása adatok alapján
 - Új fegyver listába való rögzítése
 - Fegyver listából való eltávolítása
 - Listában lévő fegyver módosítása

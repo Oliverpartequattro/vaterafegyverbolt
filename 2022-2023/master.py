@@ -2,7 +2,8 @@ from menu import *
 from data import *
 from functions import *
 def Master():
-    ReadFile()
+    ReadMainFile()
+    ReadSideFile()
 
     choice = menu()
     while True:

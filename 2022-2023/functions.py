@@ -3,13 +3,36 @@ import os
 import locale
 ShoppingCart = []
 Weapons = []
-def ReadFile():
+def ReadMainFile():
     f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
     for row in f :
         r = Data(row.strip())
         Weapons.append(r)
     f.close()
     return Weapons 
+
+def WriteMainFile():
+    f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
+    for r in Weapons:
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
+        f.write(f'{row}\n')
+    f.close()
+
+def ReadSideFile():
+    f = open('Vatera_kosár.csv', 'r', encoding = 'UTF-8')
+    f.readline()
+    for row in f :
+        r = Data(row.strip())
+        ShoppingCart.append(r)
+    f.close()
+    return ShoppingCart 
+
+def WriteSideFile():
+    f = open('Vatera_kosár.csv', 'w', encoding='UTF-8')
+    for r in ShoppingCart:
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
+        f.write(f'{row}\n')
+    f.close()
 
 def Print(row: str):
     return (f'Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}')
@@ -84,6 +107,7 @@ def ViewList(ViewCart = False):
             pass
         if Choice3 == 1:
             ShoppingCart.append(Weapons[Choice3 - 1])
+            WriteSideFile()
         else:
             input('Vissza a főmenübe...')
     else:
@@ -108,13 +132,7 @@ def NewWeapon():
 
     r = Data(row)
     Weapons.append(r)
-
-def writeFile():
-    f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
-    for r in Weapons:
-        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
-        f.write(f'{row}\n')
-    f.close()
+    WriteMainFile()
 
 def DeleteWeapon():
     ViewList()
@@ -122,7 +140,7 @@ def DeleteWeapon():
     for r in Weapons:
         if r.Name.lower() == name.lower() and r.Modify.lower() == 'igen':
             Weapons.remove(r)
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen fegyver nincs')
     
@@ -138,7 +156,7 @@ def licit():
                 r.CurrentPrice = (f'{NewLicit:n} Ft')
             else:
                 print('192.176.45.34')
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen nevű fegyver nincs')
 
@@ -155,7 +173,7 @@ def ModifyWeapon():
             r.Place = input('Új Áru helye: ')
             r.Link = input('Új link: ')
             r.Modify = 'igen'
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen nevű fegyver nincs')
 
@@ -174,5 +192,16 @@ def ViewShoppingCart():
         print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
     else:
         print(f'Összérték: {Sum} Ft')
-    input('')
-    
+    Choice = input('Kiván-e elemet törölni a listából?(i/n):')
+    if Choice == 'i':
+        name = input('Kosárból törölendő elem neve:')
+        for row in ShoppingCart:
+            if row.Name.lower() == name.lower():
+                ShoppingCart.remove(row)
+                print('Sikeres törlés')
+                WriteSideFile()
+                return
+            else:
+                print('Ilyen nevű fegyver nincs a kosárban.')
+    else:
+        pass

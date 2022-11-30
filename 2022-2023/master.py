@@ -8,7 +8,8 @@ def Master():
     choice = menu()
     while True:
         if choice == 0:
-            os. system("python login.py")
+            os.system("python login.py")
+            exit()
         if choice == 1:
             ViewList(True)
         if choice == 2:

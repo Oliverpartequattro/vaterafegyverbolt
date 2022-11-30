@@ -51,4 +51,4 @@ while True:
     elif choice == 2:
         login()
     elif choice == 3:
-        break
+        quit()

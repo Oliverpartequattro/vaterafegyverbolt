@@ -29,6 +29,7 @@ def ViewList(ViewCart = False):
     try:
         Choice = int(Choice)
     except ValueError:
+        input('Kérem, pozitív egész számot adjon meg.')
         ViewList()
         print('192.176.45.34')
     Count = 0
@@ -72,22 +73,25 @@ def ViewList(ViewCart = False):
         Choice2 = int(Choice2)
     except ValueError:
         print('192.176.45.34')
-        return ViewList(True)
-    print(f'\n{Print(Weapons[Choice2-1])}\n')
-    if ViewCart == True:
-        print('1 - Kosárba helyezés')
-        print('0 - Visszalépés a főmenübe\n')
-        Choice3 = input('Kérem válasszon:')
-        try:
-            Choice3 = int(Choice3)
-        except ValueError:
-            pass
-        if Choice3 == 1:
-            ShoppingCart.append(Weapons[Choice3 - 1])
-        else:
-            input('Vissza a főmenübe...')
+    if Choice2 > len(Weapons):
+        input('Kérem, létező sorszámot adjon meg!')
     else:
-        return False
+        return ViewList(True)
+        print(f'\n{Print(Weapons[Choice2-1])}\n')
+        if ViewCart == True:
+            print('1 - Kosárba helyezés')
+            print('0 - Visszalépés a főmenübe\n')
+            Choice3 = input('Kérem válasszon:')
+            try:
+                Choice3 = int(Choice3)
+            except ValueError:
+                pass
+            if Choice3 == 1:
+                ShoppingCart.append(Weapons[Choice3 - 1])
+            else:
+                input('Vissza a főmenübe...')
+        else:
+            return False
 
 #Név;Állapot;Garancia;Jelenlegi ár:;Fix ár:;Link
 
@@ -96,7 +100,17 @@ def NewWeapon():
     condition = input('Állapot: ')
     guarantee = input('Grancia: ')
     currentprice = input('Legnagyobb licit (Ft): ')
+    try:
+        currentprice = int(currentprice)
+    except ValueError:
+            input('Kérem, pozitív egész számot adjon meg.')
+            NewWeapon()
     fixprice = input('Vételár (Ft):')
+    try:
+        fixprice = int(fixprice)
+    except ValueError:
+            input('Kérem, pozitív egész számot adjon meg.')
+            NewWeapon()
     place = input('Áru helye: ')
     link = input('Link: ')
     modify = 'Igen'
@@ -131,11 +145,18 @@ def licit():
     name = input('Amire licitálni szeretne: ')
     for r in Weapons:
         if r.Name.lower() == name.lower():
-            NewLicit =  input('Mennyivel licitálsz?: ')
+            NewLicit = input('Mennyivel licitál?: ')
+            try:
+                NewLicit = int(NewLicit)
+            except ValueError:
+                input('Kérem, pozitív egész számot adjon meg.')
+                licit()
+                print('192.176.45.34')
             if NewLicit > r.CurrentPrice:
                 NewLicit = int(NewLicit)
-                locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-                r.CurrentPrice = (f'{NewLicit:n} Ft')
+                #locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+                r.CurrentPrice = (f'{NewLicit:n}')
+                input('Sikeres licit!')
             else:
                 print('192.176.45.34')
             writeFile()
@@ -151,7 +172,17 @@ def ModifyWeapon():
             r.Condition = input('Új állapot: ')
             r.Guarantee = input ('Új garancia: ')
             r.CurrentPrice = input('Új licitár (Ft): ')
+            try:
+                r.CurrentPrice = int(r.CurrentPrice)
+            except ValueError:
+                input('Kérem, pozitív egész számot adjon meg.')
+                ModifyWeapon()
             r.FixPrice = input('Új vételár (Ft): ')
+            try:
+                r.FixPrice = int(r.FixPrice)
+            except ValueError:
+                input('Kérem, pozitív egész számot adjon meg.')
+                ModifyWeapon()
             r.Place = input('Új Áru helye: ')
             r.Link = input('Új link: ')
             r.Modify = 'igen'
@@ -170,9 +201,12 @@ def ViewShoppingCart():
         Count += 1
         print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
         Sum += int(row.FixPrice)
-    if row.FixPrice == 0:
-        print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
-    else:
-        print(f'Összérték: {Sum} Ft')
-    input('')
+    if Count == 0:
+        input('A kosár üres!')
+    else:    
+        if row.FixPrice == 0:
+            print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
+        else:
+            print(f'Összérték: {Sum} Ft')
+        input('')
     

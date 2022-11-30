@@ -3,13 +3,36 @@ import os
 import locale
 ShoppingCart = []
 Weapons = []
-def ReadFile():
+def ReadMainFile():
     f = open('Vatera_fegyverbolt.csv', 'r', encoding = 'UTF-8')
     for row in f :
         r = Data(row.strip())
         Weapons.append(r)
     f.close()
     return Weapons 
+
+def WriteMainFile():
+    f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
+    for r in Weapons:
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
+        f.write(f'{row}\n')
+    f.close()
+
+def ReadSideFile():
+    f = open('Vatera_kosár.csv', 'r', encoding = 'UTF-8')
+    f.readline()
+    for row in f :
+        r = Data(row.strip())
+        ShoppingCart.append(r)
+    f.close()
+    return ShoppingCart 
+
+def WriteSideFile():
+    f = open('Vatera_kosár.csv', 'w', encoding='UTF-8')
+    for r in ShoppingCart:
+        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
+        f.write(f'{row}\n')
+    f.close()
 
 def Print(row: str):
     return (f'Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}')
@@ -77,19 +100,17 @@ def ViewList(ViewCart = False):
         input('Kérem, létező sorszámot adjon meg!')
     else:
         return ViewList(True)
-        print(f'\n{Print(Weapons[Choice2-1])}\n')
-        if ViewCart == True:
-            print('1 - Kosárba helyezés')
-            print('0 - Visszalépés a főmenübe\n')
-            Choice3 = input('Kérem válasszon:')
-            try:
-                Choice3 = int(Choice3)
-            except ValueError:
-                pass
-            if Choice3 == 1:
-                ShoppingCart.append(Weapons[Choice3 - 1])
-            else:
-                input('Vissza a főmenübe...')
+    print(f'\n{Print(Weapons[Choice2-1])}\n')
+    if ViewCart == True:
+        print('1 - Kosárba helyezés')
+        print('0 - Visszalépés a főmenübe\n')
+        Choice3 = input('Kérem válasszon:')
+        try:
+            Choice3 = int(Choice3)
+        except ValueError:
+            pass
+        if Choice3 == 1:
+            ShoppingCart.append(Weapons[Choice3 - 1])
         else:
             return False
 
@@ -122,13 +143,7 @@ def NewWeapon():
 
     r = Data(row)
     Weapons.append(r)
-
-def writeFile():
-    f = open('Vatera_fegyverbolt.csv', 'w', encoding='UTF-8')
-    for r in Weapons:
-        row = f'{r.Name};{r.Condition};{r.Guarantee};{r.CurrentPrice};{r.FixPrice};{r.Place};{r.Link};{r.Modify}'
-        f.write(f'{row}\n')
-    f.close()
+    WriteMainFile()
 
 def DeleteWeapon():
     ViewList()
@@ -136,7 +151,7 @@ def DeleteWeapon():
     for r in Weapons:
         if r.Name.lower() == name.lower() and r.Modify.lower() == 'igen':
             Weapons.remove(r)
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen fegyver nincs')
     
@@ -159,7 +174,7 @@ def licit():
                 input('Sikeres licit!')
             else:
                 print('192.176.45.34')
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen nevű fegyver nincs')
 
@@ -186,7 +201,7 @@ def ModifyWeapon():
             r.Place = input('Új Áru helye: ')
             r.Link = input('Új link: ')
             r.Modify = 'igen'
-            writeFile()
+            WriteMainFile()
             return
     input('Ilyen nevű fegyver nincs')
 
@@ -201,12 +216,9 @@ def ViewShoppingCart():
         Count += 1
         print(f'{Count}. Név: {row.Name}\nÁllapot: {row.Condition}\nGarancia: {row.Guarantee}\nJelenlegi Ár: {row.CurrentPrice} Ft\nVételár: {row.FixPrice} Ft\nÁru helye: {row.Place}\nLink: {row.Link}\nMódosítható-e: {row.Modify}\n')
         Sum += int(row.FixPrice)
-    if Count == 0:
-        input('A kosár üres!')
-    else:    
-        if row.FixPrice == 0:
-            print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
-        else:
-            print(f'Összérték: {Sum} Ft')
-        input('')
+    if row.FixPrice == 0:
+        print('A kosárban lévő termék(ek) közül legalább az egyikre csak licitálni lehet.')
+    else:
+        print(f'Összérték: {Sum} Ft')
+    input('')
     
